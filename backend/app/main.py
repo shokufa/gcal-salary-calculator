@@ -1,7 +1,7 @@
 from fastapi import FastAPI 
 from app.db.database import engine, Base
 import app.models.models as models
-from app.routers import courses
+from app.routers import courses, sessions
 
 # Create database tables automatically if they don't exist yet
 Base.metadata.create_all(bind = engine)
@@ -13,6 +13,7 @@ app = FastAPI(
 
 # Regiter routers
 app.include_router(courses.router)
+app.include_router(sessions.router)
 
 @app.get("/")
 def reaf_root():

@@ -6,7 +6,7 @@ from app.db.database import Base
 class CourseRate(Base):
     __tablename__ = "course_rates"
 
-    id = Column(Integer, primary_order=True, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     course_name = Column(String, unique = True, index = True, nullable = False)
     hourly_rate = Column(Float, nullable=False)
 
