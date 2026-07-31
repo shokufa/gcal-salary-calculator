@@ -1,0 +1,14 @@
+# Ignore Node.js / React installed dependencies
+frontend/node_modules/
+frontend/build/
+
+# Ignore Python virtual environment and cache
+backend/venv/
+backend/__pycache__/
+*.pyc 
+*.db
+backend/.env
+
+# System files
+.DS_store
+Thumbs.db
