@@ -1,4 +1,9 @@
 from fastapi import FastAPI 
+from app.db.database import engine, Base
+import app.models.models as models
+
+# Create database tables automatically if they don't exist yet
+Base.metadata.create_all(bind = engine)
 
 app = FastAPI(
     title="Google Calender Salary Calculator",
