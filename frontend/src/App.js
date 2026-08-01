@@ -39,17 +39,31 @@ function App() {
 
   const handleAddCourse = async (e) => {
     e.preventDefault();
-    if (!newCourseName || !newHourlyRate) return;
+    setError(''); // پاک کردن خطاهای قبلی
+
+    if (!newCourseName.trim() || !newHourlyRate) {
+      setError('Please fill in both Course Code and Rate fields.');
+      return;
+    }
 
     try {
-      await axios.post(`${API_BASE_URL}/courses/`, {
+      console.log('Sending Add Course request...', {
         course_name: newCourseName.trim(),
         hourly_rate: parseFloat(newHourlyRate)
       });
+
+      const res = await axios.post(`${API_BASE_URL}/courses/`, {
+        course_name: newCourseName.trim(),
+        hourly_rate: parseFloat(newHourlyRate)
+      });
+
+      console.log('Course added successfully:', res.data);
+
       setNewCourseName('');
       setNewHourlyRate('');
-      fetchCourses();
+      fetchCourses(); // به‌روزرسانی لیست
     } catch (err) {
+      console.error('Error adding course:', err);
       setError(err.response?.data?.detail || 'Failed to add course rate.');
     }
   };
@@ -207,7 +221,7 @@ function App() {
                 checked={onlyPistachio}
                 onChange={(e) => setOnlyPistachio(e.target.checked)}
               />
-              Calculate <strong>Pistachio Green</strong> events only 🟢
+              Calculate <strong>Held</strong> only
             </label>
           </div>
 

@@ -9,13 +9,19 @@ import app.schemas.schemas as schemas
 router = APIRouter(prefix="/courses", tags=["Course Rates"])
 
 @router.post("/", response_model=schemas.CourseRate)
-def create_course_rate(course: schemas.CourseRateCreate, db: Session = Depends(get_db)):
-    db_course = db.query(models.CourseRate).filter(models.CourseRate.course_name == course.course_name).first()
-    if db_course:
-        raise HTTPException(status_code=400, detail="Course rate with this name already exists")
+def create_or_update_course_rate(course: schemas.CourseRateCreate, db: Session = Depends(get_db)):
+    existing_course = db.query(models.CourseRate).filter(
+        models.CourseRate.course_name.ilike(course.course_name.strip())
+    ).first()
     
+    if existing_course:
+        existing_course.hourly_rate = course.hourly_rate
+        db.commit()
+        db.refresh(existing_course)
+        return existing_course
+
     new_course = models.CourseRate(
-        course_name=course.course_name,
+        course_name=course.course_name.strip(),
         hourly_rate=course.hourly_rate
     )
 
