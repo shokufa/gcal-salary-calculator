@@ -235,7 +235,7 @@ Example request:
   "start_date": "2026-07-01",
   "end_date": "2026-07-31",
   "title_filter": null,
-  "only_pistachio": true
+  "only_sage": true
 }
 ```
 
