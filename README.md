@@ -38,7 +38,6 @@ The project was built to replace manual salary calculations from calendar events
   - Total calculated salary
   - Individual session earnings
 - Optional event-title filtering
-- Optional filtering for held sessions using Google Calendar event colors
 - Add, update, and delete course rates
 - Responsive React interface
 
