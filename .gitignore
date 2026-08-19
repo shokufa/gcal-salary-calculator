@@ -7,8 +7,11 @@ backend/venv/
 backend/__pycache__/
 *.pyc 
 *.db
-backend/.env
 
 # System files
 .DS_store
 Thumbs.db
+
+# Environment files
+backend/.env
+frontend/.env
