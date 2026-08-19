@@ -17,7 +17,7 @@ class CalendarCalculateRequest(BaseModel):
     start_date: str          # YYYY-MM-DD
     end_date: str            # YYYY-MM-DD
     title_filter: Optional[str] = None
-    only_pistachio: bool = True
+    only_sage: bool = True
 
 @router.post("/calculate", response_model=Dict[str, Any])
 def calculate_salary_from_events(
@@ -43,11 +43,11 @@ def calculate_salary_from_events(
             detail="Failed to fetch events from Google Calendar. Check token/permissions."
         )
 
-    # Calculate earnings filtering by Pistachio green
+    # Calculate earnings filtering by Sage green
     sessions = calculate_session_earnings(
         events=events, 
         course_rates=course_rates, 
-        only_pistachio=req.only_pistachio,
+        only_sage=req.only_sage,
         title_filter=req.title_filter
     )
     

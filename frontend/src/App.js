@@ -12,7 +12,7 @@ function App() {
   const [startDate, setStartDate] = useState('2026-07-01');
   const [endDate, setEndDate] = useState('2026-07-31');
   const [titleFilter, setTitleFilter] = useState('');
-  const [onlyPistachio, setOnlyPistachio] = useState(true);
+  const [onlySage, setOnlySage] = useState(true);
 
   // Course Rates State
   const [courses, setCourses] = useState([]);
@@ -109,7 +109,7 @@ function App() {
         start_date: startDate,
         end_date: endDate,
         title_filter: titleFilter || null,
-        only_pistachio: onlyPistachio
+        only_sage: onlySage
       });
 
       setSalaryData(response.data);
@@ -209,7 +209,7 @@ function App() {
             <label>Filter by Title (Optional):</label>
             <input
               type="text"
-              placeholder="e.g. Radvin, PY5"
+              placeholder="e.g. [Student-name], PY5"
               value={titleFilter}
               onChange={(e) => setTitleFilter(e.target.value)}
             />
@@ -219,8 +219,8 @@ function App() {
             <label>
               <input
                 type="checkbox"
-                checked={onlyPistachio}
-                onChange={(e) => setOnlyPistachio(e.target.checked)}
+                checked={onlySage}
+                onChange={(e) => setOnlySage(e.target.checked)}
               />
               Calculate <strong>Held</strong> only
             </label>
@@ -262,7 +262,7 @@ function App() {
           <div className="sessions-list">
             <h3>Calculated Sessions Detail:</h3>
             {salaryData.sessions.length === 0 ? (
-              <p className="empty-msg">No matching Pistachio events found in this date range.</p>
+              <p className="empty-msg">No matching Sage events found in this date range.</p>
             ) : (
               <ul>
                 {salaryData.sessions.map((s, idx) => (

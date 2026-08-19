@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 Base.metadata.create_all(bind = engine)
 
 app = FastAPI(
-    title="Google Calender Salary Calculator",
+    title="Google Calendar Salary Calculator",
     version="1.0.0"
 )
 
@@ -20,12 +20,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Regiter routers
+# Register routers
 app.include_router(courses.router)
 app.include_router(sessions.router)
 
 @app.get("/")
-def reaf_root():
+def read_root():
     return {
         "status":"online",
         "message": "FastAPI backend is up and running!"

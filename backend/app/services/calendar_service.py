@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 from typing import List, Dict, Any
 
-PISTACHIO_COLOR_ID = "2"  
+SAGE_COLOR_ID = "2"  
 TOMATO_RED_COLOR_ID = "11"
 
 def parse_event_duration(start_time_str: str, end_time_str: str) -> float:
@@ -37,7 +37,7 @@ def fetch_google_calendar_events(google_token: str, start_date: str, end_date: s
 def calculate_session_earnings(
     events: List[Dict[str, Any]], 
     course_rates: Dict[str, float], 
-    only_pistachio: bool = True,
+    only_sage: bool = True,
     title_filter: str = None
 ) -> List[Dict[str, Any]]:
     processed_sessions = []
@@ -45,11 +45,11 @@ def calculate_session_earnings(
     for event in events:
         event_color = str(event.get('colorId')) if event.get('colorId') is not None else None
 
-        if only_pistachio:
+        if only_sage:
             if event_color == TOMATO_RED_COLOR_ID:
                 continue
                 
-            if event_color != PISTACHIO_COLOR_ID:
+            if event_color != SAGE_COLOR_ID:
                 continue
 
         summary = event.get('summary', 'no title')
