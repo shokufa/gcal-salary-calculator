@@ -20,7 +20,7 @@ class CourseRate(CourseRateBase):
         
 class TeachingSessionBase(BaseModel):
     event_title: str
-    duration_hourse: float
+    duration_hours: float
     total_earnings: float
     course_id: Optional[int] = None
 
